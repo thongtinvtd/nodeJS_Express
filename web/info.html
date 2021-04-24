@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Board infomation</title>
+</head>
+<body>
+    <div class="infoPiece">
+        <label for="">Position of chess piece pawn Black 4</label>
+        <button style="height: 30px; width: 60px; " onclick="getInfo();">Get</button>
+        <table >
+            <tbody >
+                <tr>
+                    <td >
+                       position X:
+                    </td>
+                    <td id="posX">
+                        --
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        position Y:
+                    </td>
+                     <td id="posY">
+                        --
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
+        <label>Move the white pawn 1</label>
+        <br>
+
+        <label>Position X</label>
+        <input type="text" name="" id="inputX" placeholder="Enter number 0->7">
+        <br>
+        <label>Position Y</label>
+        <input type="text" name="" id="inputY" placeholder="Enter number 0->7">
+        <br>
+        <button style="height: 30px; width: 60px; margin-top: 5px;" onclick="movePiece();">Move</button>
+
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

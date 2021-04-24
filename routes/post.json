@@ -1,0 +1,194 @@
+[
+    {
+    "piece": "pawnBlack1",
+    "position": {
+        "posX":1,
+        "posY":0
+}},
+{
+    "piece": "pawnBlack2",
+    "position": {
+        "posX":1,
+        "posY":1
+}},
+{
+    "piece": "pawnBlack3",
+    "position": {
+        "posX":1,
+        "posY":2
+}},
+{
+    "piece": "pawnBlack4",
+    "position": {
+        "posX":1,
+        "posY":3
+}},
+{
+    "piece": "pawnBlack5",
+    "position": {
+        "posX":1,
+        "posY":4
+}},
+{
+    "piece": "pawnBlack6",
+    "position": {
+        "posX":1,
+        "posY":5
+}},
+{
+    "piece": "pawnBlack7",
+    "position": {
+        "posX":1,
+        "posY":6
+}},
+{
+    "piece": "pawnBlack8",
+    "position": {
+        "posX":1,
+        "posY":7
+}},
+{
+    "piece": "kingBlack",
+    "position": {
+        "posX":0,
+        "posY":3
+}},
+{
+    "piece": "queenBlack",
+    "position": {
+        "posX":0,
+        "posY":4
+}},
+{
+    "piece": "castleBlack1",
+    "position": {
+        "posX":0,
+        "posY":0
+}},
+{
+    "piece": "castleBlack2",
+    "position": {
+        "posX":0,
+        "posY":7
+}},
+{
+    "piece": "bishopBlack1",
+    "position": {
+        "posX":0,
+        "posY":2
+}},
+{
+    "piece": "bishopBlack2",
+    "position": {
+        "posX":0,
+        "posY":5
+}},
+{
+    "piece": "knightBlack1",
+    "position": {
+        "posX":0,
+        "posY":1
+}},
+{
+    "piece": "knightBlack2",
+    "position": {
+        "posX":0,
+        "posY":6
+}},
+{
+    "piece": "pawnWhite1",
+    "position": {
+        "posX":6,
+        "posY":0
+}},
+{
+    "piece": "pawnWhite2",
+    "position": {
+        "posX":6,
+        "posY":1
+}},
+{
+    "piece": "pawnWhite3",
+    "position": {
+        "posX":6,
+        "posY":2
+}},
+{
+    "piece": "pawnWhite4",
+    "position": {
+        "posX":6,
+        "posY":3
+}},
+{
+    "piece": "pawnWhite5",
+    "position": {
+        "posX":6,
+        "posY":4
+}},
+{
+    "piece": "pawnWhite6",
+    "position": {
+        "posX":6,
+        "posY":5
+}},
+{
+    "piece": "pawnWhite7",
+    "position": {
+        "posX":6,
+        "posY":6
+}},
+{
+    "piece": "pawnWhite8",
+    "position": {
+        "posX":6,
+        "posY":7
+}},
+{
+    "piece": "kingWhite",
+    "position": {
+        "posX":7,
+        "posY":3
+}},
+{
+    "piece": "queenWhite",
+    "position": {
+        "posX":7,
+        "posY":4
+}},
+{
+    "piece": "castleWhite1",
+    "position": {
+        "posX":7,
+        "posY":0
+}},
+{
+    "piece": "castleWhite2",
+    "position": {
+        "posX":7,
+        "posY":7
+}},
+{
+    "piece": "bishopWhite1",
+    "position": {
+        "posX":7,
+        "posY":2
+}},
+{
+    "piece": "bishopWhite2",
+    "position": {
+        "posX":7,
+        "posY":5
+}},
+{
+    "piece": "knightWhite1",
+    "position": {
+        "posX":7,
+        "posY":1
+}},
+{
+    "piece": "knightWhite2",
+    "position": {
+        "posX":7,
+        "posY":6
+}}
+    ]
