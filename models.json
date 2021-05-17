@@ -1,0 +1,313 @@
+[{
+  "_id": {
+    "$oid": "6089b7e6e89e382bdc20d679"
+  },
+  "piece": "pieceBlack0",
+  "position": {
+    "posX": 0,
+    "posY": 0
+  },
+  "date": {
+    "$date": "2021-04-28T19:30:46.795Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6089b7e6e89e382bdc20d67a"
+  },
+  "piece": "pieceBlack1",
+  "position": {
+    "posX": 0,
+    "posY": 0
+  },
+  "date": {
+    "$date": "2021-04-28T19:30:46.818Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6089b7e6e89e382bdc20d67b"
+  },
+  "piece": "pieceBlack2",
+  "position": {
+    "posX": 0,
+    "posY": 0
+  },
+  "date": {
+    "$date": "2021-04-28T19:30:46.826Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6089b7e6e89e382bdc20d67c"
+  },
+  "piece": "pieceBlack3",
+  "position": {
+    "posX": 0,
+    "posY": 0
+  },
+  "date": {
+    "$date": "2021-04-28T19:30:46.838Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6089b7e6e89e382bdc20d67d"
+  },
+  "piece": "pieceBlack4",
+  "position": {
+    "posX": 3,
+    "posY": 0
+  },
+  "date": {
+    "$date": "2021-04-28T19:30:46.845Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6089b7e6e89e382bdc20d67e"
+  },
+  "piece": "pieceBlack5",
+  "position": {
+    "posX": 3,
+    "posY": 2
+  },
+  "date": {
+    "$date": "2021-04-28T19:30:46.856Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6089b7e6e89e382bdc20d67f"
+  },
+  "piece": "pieceBlack6",
+  "position": {
+    "posX": 4,
+    "posY": 1
+  },
+  "date": {
+    "$date": "2021-04-28T19:30:46.925Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6089b7e6e89e382bdc20d680"
+  },
+  "piece": "pieceBlack8",
+  "position": {
+    "posX": 5,
+    "posY": 2
+  },
+  "date": {
+    "$date": "2021-04-28T19:30:46.930Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6089b7e6e89e382bdc20d681"
+  },
+  "piece": "pieceBlack7",
+  "position": {
+    "posX": 5,
+    "posY": 0
+  },
+  "date": {
+    "$date": "2021-04-28T19:30:46.936Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6089b7e6e89e382bdc20d682"
+  },
+  "piece": "pieceBlack9",
+  "position": {
+    "posX": 6,
+    "posY": 1
+  },
+  "date": {
+    "$date": "2021-04-28T19:30:46.940Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6089b7e6e89e382bdc20d683"
+  },
+  "piece": "pieceBlack10",
+  "position": {
+    "posX": 7,
+    "posY": 0
+  },
+  "date": {
+    "$date": "2021-04-28T19:30:46.945Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6089b7e6e89e382bdc20d684"
+  },
+  "piece": "pieceBlack11",
+  "position": {
+    "posX": 7,
+    "posY": 2
+  },
+  "date": {
+    "$date": "2021-04-28T19:30:46.949Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6089b87781b3dd3ee861d707"
+  },
+  "piece": "pieceWhite0",
+  "position": {
+    "posX": 0,
+    "posY": 5
+  },
+  "date": {
+    "$date": "2021-04-28T19:33:11.913Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6089b87781b3dd3ee861d708"
+  },
+  "piece": "pieceWhite1",
+  "position": {
+    "posX": 0,
+    "posY": 7
+  },
+  "date": {
+    "$date": "2021-04-28T19:33:11.935Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6089b87781b3dd3ee861d709"
+  },
+  "piece": "pieceWhite2",
+  "position": {
+    "posX": 1,
+    "posY": 6
+  },
+  "date": {
+    "$date": "2021-04-28T19:33:11.944Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6089b87781b3dd3ee861d70a"
+  },
+  "piece": "pieceWhite3",
+  "position": {
+    "posX": 2,
+    "posY": 5
+  },
+  "date": {
+    "$date": "2021-04-28T19:33:11.951Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6089b87781b3dd3ee861d70b"
+  },
+  "piece": "pieceWhite4",
+  "position": {
+    "posX": 2,
+    "posY": 7
+  },
+  "date": {
+    "$date": "2021-04-28T19:33:11.957Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6089b87781b3dd3ee861d70c"
+  },
+  "piece": "pieceWhite5",
+  "position": {
+    "posX": 3,
+    "posY": 6
+  },
+  "date": {
+    "$date": "2021-04-28T19:33:11.969Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6089b87881b3dd3ee861d70d"
+  },
+  "piece": "pieceWhite6",
+  "position": {
+    "posX": 4,
+    "posY": 5
+  },
+  "date": {
+    "$date": "2021-04-28T19:33:12.046Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6089b87881b3dd3ee861d70e"
+  },
+  "piece": "pieceWhite7",
+  "position": {
+    "posX": 4,
+    "posY": 7
+  },
+  "date": {
+    "$date": "2021-04-28T19:33:12.054Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6089b87881b3dd3ee861d70f"
+  },
+  "piece": "pieceWhite8",
+  "position": {
+    "posX": 5,
+    "posY": 6
+  },
+  "date": {
+    "$date": "2021-04-28T19:33:12.062Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6089b87881b3dd3ee861d710"
+  },
+  "piece": "pieceWhite9",
+  "position": {
+    "posX": 6,
+    "posY": 5
+  },
+  "date": {
+    "$date": "2021-04-28T19:33:12.067Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6089b87881b3dd3ee861d711"
+  },
+  "piece": "pieceWhite10",
+  "position": {
+    "posX": 6,
+    "posY": 7
+  },
+  "date": {
+    "$date": "2021-04-28T19:33:12.071Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6089b87881b3dd3ee861d712"
+  },
+  "piece": "pieceWhite11",
+  "position": {
+    "posX": 7,
+    "posY": 6
+  },
+  "date": {
+    "$date": "2021-04-28T19:33:12.078Z"
+  },
+  "__v": 0
+}]

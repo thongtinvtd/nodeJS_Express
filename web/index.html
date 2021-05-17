@@ -5,10 +5,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
+    <style>
+        body{
+            margin: 5px;
+            padding: 5px;
+        }
+        button{
+            height: 50px;
+            width: 100px;
+            border-radius:10px;
+       }
+        .btn{
+            display: flex;
+            flex-direction: row;
+        }
+        .btnItem{
+            margin: 0px 5px;
+        }
+        #blackSide{
+            background-color: rgb(243, 136, 136);
+            color: white;
+        }
+        #whiteSide{
+            background-color: white;
+        }
+        
+        </style>
 </head>
 <body>
     <a href="/chess">Play chess</a>
     <br>
+    <p>Choose your side and play: </p>
+    <div class="btn" >
+    <form action="/chessBlack" class="btnItem" method="GET">  <!--action="POST" -->
+        <button id="blackSide" >Red Chess</button>
+    </form>
+    <form action="/chessWhite" class="btnItem" method="GET">  <!--action="POST" -->
+        <button id="whiteSide" >White Chess</button>
+    </form>
+    </div>
+    <br>
+    <a href="/heatmap">Heatmap</a>
+    <br>
     <a href="/info">Information of chess</a>
+
+    <script src="./js/drapControl.js"></script>
 </body>
 </html>
