@@ -1,179 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=.0">
     <title>Heatmap of ChessBoard</title>
     <style>
-        body{
+        * {
             margin: 0;
             padding: 0;
         }
-        .main{
+
+        .main {
             display: flex;
             flex-direction: column;
             align-items: center;
-            
+
         }
-        .label{
+
+        .label {
             margin: 20px 0;
             font-size: 20px;
             font-weight: bold;
             text-align: center;
         }
-        .heatmap{
-            height: 680px;
+
+        .center {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .heatmap {
+            height: 660px;
             width: 650px;
             /* background-color: darkorange; */
             border: solid 1px black;
-            padding:0;
-            margin:0;
+            padding: 0;
+            margin: 0;
             align-items: center;
-            
+
         }
-        table{
+
+        table {
             z-index: 0;
             text-align: center;
 
         }
-        .cell{
+
+        .cell {
             height: 75px;
             width: 75px;
-            border:black solid 1px;
-        }
-        .cellWhite{
-            background-color: white;
-        }
-        .cellBlack{ 
-            background-color: gray;
-        }
-        #canvasHeatmap{
-            position: absolute;
-            top: 90px;
-            
-            z-index: 1;
+            border: black solid 1px;
+            margin-left: 5px;
+
+
         }
 
+        .cellWhite {
+            background-color: white;
+        }
+
+        .cellBlack {
+            background-color: gray;
+        }
+
+        .colorBar {
+            margin-left: 20px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: left;
+
+        }
+
+        .colorBar .Bar {
+            width: 40px;
+            height: 600px;
+            background: linear-gradient(0deg,
+                    hsl(0, 100%, 99%) 0%,
+                    hsl(0, 100%, 84%) 20%,
+                    hsl(0, 100%, 68%) 40%,
+                    hsl(0, 100%, 52%) 60%,
+                    hsl(0, 100%, 36%) 80%,
+                    hsl(0, 100%, 20%) 100%);
+        }
+
+        .colorBar .textBar {
+            margin-left: 10px;
+            width: 60px;
+            height: 600px;
+
+            position: relative;
+            display: flex;
+
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: left;
+            font-size: small;
+            /* font-weight: bold; */
+
+        }
     </style>
 </head>
+
 <body>
     <div class="main">
         <div class="label">Heat map of the chess board</div>
-        <div class="heatmap">
-            <canvas id="canvasHeatmap" width="650" height="645"></canvas>
-            <div class="board">
-            <table>
-                <thead>
-                    <tr>
-                        <td></td>
-                        <td>A</td>
-                        <td>B</td>
-                        <td>C</td>
-                        <td>D</td>
-                        <td>E</td>
-                        <td>F</td>
-                        <td>G</td>
-                        <td>H</td>
-                    </tr>
-                </thead>
-            <tr class="rowEven">
-                <td>1</td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-            </tr>
-            <tr class="rowOdd">
+        <div class="center">
+            <div class="heatmap">
+                <div class="board">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td></td>
+                                <td>A</td>
+                                <td>B</td>
+                                <td>C</td>
+                                <td>D</td>
+                                <td>E</td>
+                                <td>F</td>
+                                <td>G</td>
+                                <td>H</td>
+                            </tr>
+                        </thead>
+                        <tr class="rowEven">
+                            <td>1</td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
 
-                <td>2</td>                
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
+                        </tr>
+                        <tr class="rowOdd">
+                            <td>2</td>
 
-            </tr>
-            <tr class="rowEven">
-                <td>3</td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-            </tr>
-            <tr class="rowOdd">
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
 
-                <td>4</td>                
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-            </tr>
-            <tr class="rowEven">
-                <td>5</td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-            </tr>
-            <tr class="rowOdd">
+                        </tr>
+                        <tr class="rowEven">
+                            <td>3</td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                        </tr>
+                        <tr class="rowOdd">
+                            <td>4</td>
 
-                <td>6</td>                
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-            </tr>
-            <tr class="rowEven">
-                <td>7</td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-            </tr>
-            <tr class="rowOdd">
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                        </tr>
+                        <tr class="rowEven">
+                            <td>5</td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                        </tr>
+                        <tr class="rowOdd">
+                            <td>6</td>
 
-                <td>8</td>                
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-                <td class="cell cellBlack"></td>
-                <td class="cell cellWhite"></td>
-            </tr>
-        </table>
-    </div>
-    </div>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                        </tr>
+                        <tr class="rowEven">
+                            <td>7</td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                        </tr>
+                        <tr class="rowOdd">
+                            <td>8</td>
+
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                            <td class="cell cellBlack"></td>
+                            <td class="cell cellWhite"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="colorBar">
+                <div class="Bar"></div>
+                <div class="textBar">
+                    <p class="valueBar">--</p>
+                    <p class="valueBar">--</p>
+                    <p class="valueBar">--</p>
+                    <p class="valueBar">--</p>
+                    <p class="valueBar">--</p>
+                    <p class="valueBar">0</p>
+                </div>
+            </div>
+
+        </div>
     </div>
     <script src="js/heatmap.js"></script>
 </body>
+
 </html>

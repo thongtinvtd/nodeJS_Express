@@ -245,13 +245,13 @@ var timestamp1 = 0;
 var lastTimestamp1 = 0;
 
 function getInfo(){
-    let url = `http://localhost:5000/post`;
+    const url = `http://localhost:5000/post`;
     // let target=[];
     fetch(url)
     .then(async res => {
         const data = await res.json();
         console.log('[Response]',data[16]); //[16] position in the DB of white pawn 1
-        let target = [data[16].position.posX,data[16].position.posY];
+        const target = [data[16].position.posX,data[16].position.posY];
         console.log(target);
         movePiece(piecesWhite[0],target);
 
