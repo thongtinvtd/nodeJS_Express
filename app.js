@@ -10,7 +10,7 @@ require('dotenv/config');
 //Middleware
 app.use(express.json());
 // app.use(bodyParser.json());
-app.use(cors());
+app.use(cors()); //to connect to WAN
 const postRoute = require('./routes/post')
 app.use('/post', postRoute);
 app.use(express.static(__dirname + '/web'))
