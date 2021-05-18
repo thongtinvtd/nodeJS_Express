@@ -70,5 +70,8 @@ function drawColorBarText(){
         }
 }
 
-const data = getAllInfoHeatmap();
-console.log(data)
+// const data = getAllInfoHeatmap();
+// console.log(data)
+setInterval(()=>{
+    getAllInfoHeatmap();
+},30000);
