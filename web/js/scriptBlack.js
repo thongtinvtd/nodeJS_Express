@@ -88,17 +88,9 @@ function drawCylinder(locateX, locateY, color, isKing) {
     const cylinderGeometry = new THREE.CylinderGeometry(20, 20, 10, 32);
     var material = [];
     if (isKing) {
-        material = [
-            new THREE.MeshLambertMaterial({ color: color }),
-            new THREE.MeshLambertMaterial({ color: color }),
-            new THREE.MeshLambertMaterial({ color: color })
-        ];
+        material = new THREE.MeshLambertMaterial({ color: 0xff0000 });
     } else {
-        material = [
-            new THREE.MeshLambertMaterial({ color: color }),
-            new THREE.MeshLambertMaterial({ color: color }),
-            new THREE.MeshLambertMaterial({ color: color })
-        ];
+        material = new THREE.MeshLambertMaterial({ color: color });
     }
     const cylinder = new THREE.Mesh(cylinderGeometry, material);
     cylinder.position.x = -200 + locateX * 50;
@@ -177,56 +169,56 @@ function move1step(piece, direction) {
 var timestamp = undefined;
 var lastTimestamp = undefined;
 
-function moveArrowKey(piece) {
-    window.addEventListener("keydown", function (event) {
-        if (event.key == "ArrowUp"
-            || event.key == "ArrowDown"
-            || event.key == "ArrowLeft"
-            || event.key == "ArrowRight"
-        ) {
-            timestamp = Date.now();
-        }
+// // function moveArrowKey(piece) {
+// //     window.addEventListener("keydown", function (event) {
+// //         if (event.key == "ArrowUp"
+// //             || event.key == "ArrowDown"
+// //             || event.key == "ArrowLeft"
+// //             || event.key == "ArrowRight"
+// //         ) {
+// //             timestamp = Date.now();
+// //         }
 
-    })
-    window.addEventListener("keyup", function (event) {
-        lastTimestamp = timestamp;
-        timestamp = Date.now();
-        if ((timestamp - lastTimestamp) >= 2) {
-            if (event.key == "ArrowUp") {
-                move1step(piece, "up")
-            } else
-                if (event.key == "ArrowDown") {
-                    move1step(piece, "down")
-                } else
-                    if (event.key == "ArrowLeft") {
-                        move1step(piece, "left")
-                    } else
-                        if (event.key == "ArrowRight") {
-                            move1step(piece, "right")
-                        }
-        }
-    })
-    // when moving the piece -> save its position to DB
-    // example: id of pawn black {60807df44bd4d33541164e1d}
-    url = `http://localhost:5000/post/60807df44bd4d33541164e1d`;
-    posX = (piece.position.x + 200) / 50
-    posY = (piece.position.z + 200) / 50
-    dataJsonPos = { position: { posX: posX, posY: posY } }
-    fetch(url, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dataJsonPos),
-    })
-        .then(response => response.json())
-        // .then(data => {
-        // console.log('Success:', data);
-        // })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-}
+// //     })
+//     window.addEventListener("keyup", function (event) {
+//         lastTimestamp = timestamp;
+//         timestamp = Date.now();
+//         if ((timestamp - lastTimestamp) >= 2) {
+//             if (event.key == "ArrowUp") {
+//                 move1step(piece, "up")
+//             } else
+//                 if (event.key == "ArrowDown") {
+//                     move1step(piece, "down")
+//                 } else
+//                     if (event.key == "ArrowLeft") {
+//                         move1step(piece, "left")
+//                     } else
+//                         if (event.key == "ArrowRight") {
+//                             move1step(piece, "right")
+//                         }
+//         }
+//     })
+//     // when moving the piece -> save its position to DB
+//     // example: id of pawn black {60807df44bd4d33541164e1d}
+//     url = `http://localhost:5000/post/60807df44bd4d33541164e1d`;
+//     posX = (piece.position.x + 200) / 50
+//     posY = (piece.position.z + 200) / 50
+//     dataJsonPos = { position: { posX: posX, posY: posY } }
+//     fetch(url, {
+//         method: 'PATCH',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(dataJsonPos),
+//     })
+//         .then(response => response.json())
+//         // .then(data => {
+//         // console.log('Success:', data);
+//         // })
+//         .catch((error) => {
+//             console.error('Error:', error);
+//         });
+// }
 
 var timestamp1 = 0;
 var lastTimestamp1 = 0;
@@ -237,36 +229,25 @@ function getInfo() {
     fetch(url)
         .then(async res => {
             const data = await res.json();
-            console.log('[Response]', data); //[16] position in the DB of white pawn 1
-            // for(i=0;i<data.length;i++){
-            //     const pieceName = data[i].piece;
-            //     if(pieceName.includes("pieceWhite")){
-            //         movePiece(piecesWhiteSet[i-12][0],[data[i].position.posX,data[i].position.posY])
-            //     }                
-            // }
-            // movePiece(piecesWhiteSet[0][0], [4,4])
-            for(i=12;i<24;i++){
-                let lastX = data[i].posX[data[i].posX.length - 1]
-                let lastY = data[i].posY[data[i].posY.length - 1]
-                movePiece(piecesWhiteSet[i-12][0],[lastX,lastY])
+            console.log('[Response]', data);
+            for (i = 0; i < data.length; i++) {
+                const pieceName = data[i].piece;
+                if (pieceName.includes("pieceWhite")) {
+                    movePiece(piecesWhiteSet[i - 12][0], [data[i].position.posX, data[i].position.posY])
+                }
             }
+            // movePiece(piecesWhiteSet[0][0], [4,4])
+
+            // for(i=12;i<24;i++){
+            //     let lastX = data[i].posX[data[i].posX.length - 1]
+            //     let lastY = data[i].posY[data[i].posY.length - 1]
+            //     movePiece(piecesWhiteSet[i-12][0],[lastX,lastY])
+            // }
         })
 }
 setInterval(() => {
     getInfo();
 }, 3000);
-// const target = getInfo();
-// function movePieceServer(){
-//     timestamp1 = Date.now();
-//     if((timestamp1 - lastTimestamp1)>10000){
-//         var target = getInfo();
-//         lastTimestamp1 = timestamp1;
-
-//         console.log(lastTimestamp1)
-//         console.log(target);
-//         movePiece(pawnWhite[0],target);
-//     }
-// }
 
 function animate() {
     // moveArrowKey(piecesBlack[1]);
@@ -362,28 +343,27 @@ document.addEventListener("pointerup", () => {
     // controls.enabled = true;
 });
 
-function postData(piece, name) {
-    url = `http://localhost:5000/post/`;
-    posX = (piece.position.x + 200) / 50
-    posY = (piece.position.z + 200) / 50
-    dataJsonPos = { piece: name, position: { posX: posX, posY: posY } }
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(dataJsonPos),
-    })
-        .then(response => response.json())
-        // .then(data => {
-        // console.log('Success:', data);
-        // })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
-}
+// function postData(piece, name) {
+//     url = `http://localhost:5000/post/`;
+//     posX = (piece.position.x + 200) / 50
+//     posY = (piece.position.z + 200) / 50
+//     dataJsonPos = { piece: name, position: { posX: posX, posY: posY } }
+//     fetch(url, {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(dataJsonPos),
+//     })
+//         .then(response => response.json())
+//         // .then(data => {
+//         // console.log('Success:', data);
+//         // })
+//         .catch((error) => {
+//             console.error('Error:', error);
+//         });
+// }
 function patchData(piece, name) {
-    // url = `http://localhost:5000/post/60807df44bd4d33541164e1d`;
     url = `http://localhost:5000/post/${name}`;
     posX = (piece.position.x + 200) / 50
     posY = (piece.position.z + 200) / 50
