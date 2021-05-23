@@ -169,62 +169,61 @@ function move1step(piece, direction) {
 var timestamp = undefined;
 var lastTimestamp = undefined;
 
-// // function moveArrowKey(piece) {
-// //     window.addEventListener("keydown", function (event) {
-// //         if (event.key == "ArrowUp"
-// //             || event.key == "ArrowDown"
-// //             || event.key == "ArrowLeft"
-// //             || event.key == "ArrowRight"
-// //         ) {
-// //             timestamp = Date.now();
-// //         }
+function moveArrowKey(piece) {
+    window.addEventListener("keydown", function (event) {
+        if (event.key == "ArrowUp"
+            || event.key == "ArrowDown"
+            || event.key == "ArrowLeft"
+            || event.key == "ArrowRight"
+        ) {
+            timestamp = Date.now();
+        }
 
-// //     })
-//     window.addEventListener("keyup", function (event) {
-//         lastTimestamp = timestamp;
-//         timestamp = Date.now();
-//         if ((timestamp - lastTimestamp) >= 2) {
-//             if (event.key == "ArrowUp") {
-//                 move1step(piece, "up")
-//             } else
-//                 if (event.key == "ArrowDown") {
-//                     move1step(piece, "down")
-//                 } else
-//                     if (event.key == "ArrowLeft") {
-//                         move1step(piece, "left")
-//                     } else
-//                         if (event.key == "ArrowRight") {
-//                             move1step(piece, "right")
-//                         }
-//         }
-//     })
-//     // when moving the piece -> save its position to DB
-//     // example: id of pawn black {60807df44bd4d33541164e1d}
-//     url = `http://localhost:5000/post/60807df44bd4d33541164e1d`;
-//     posX = (piece.position.x + 200) / 50
-//     posY = (piece.position.z + 200) / 50
-//     dataJsonPos = { position: { posX: posX, posY: posY } }
-//     fetch(url, {
-//         method: 'PATCH',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(dataJsonPos),
-//     })
-//         .then(response => response.json())
-//         // .then(data => {
-//         // console.log('Success:', data);
-//         // })
-//         .catch((error) => {
-//             console.error('Error:', error);
-//         });
-// }
+    })
+    window.addEventListener("keyup", function (event) {
+        lastTimestamp = timestamp;
+        timestamp = Date.now();
+        if ((timestamp - lastTimestamp) >= 2) {
+            if (event.key == "ArrowUp") {
+                move1step(piece, "up")
+            } else
+                if (event.key == "ArrowDown") {
+                    move1step(piece, "down")
+                } else
+                    if (event.key == "ArrowLeft") {
+                        move1step(piece, "left")
+                    } else
+                        if (event.key == "ArrowRight") {
+                            move1step(piece, "right")
+                        }
+        }
+    })
+    // when moving the piece -> save its position to DB
+    // example: id of pawn black {60807df44bd4d33541164e1d}
+    url = `http://localhost:5000/post/60807df44bd4d33541164e1d`;
+    posX = (piece.position.x + 200) / 50
+    posY = (piece.position.z + 200) / 50
+    dataJsonPos = { position: { posX: posX, posY: posY } }
+    fetch(url, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataJsonPos),
+    })
+        .then(response => response.json())
+        // .then(data => {
+        // console.log('Success:', data);
+        // })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}
 
 var timestamp1 = 0;
 var lastTimestamp1 = 0;
-var dataGetInfo;
 function getInfo() {
-    let url = `http://localhost:5000/post`;
+    const url = `http://localhost:5000/post`;
     // let target=[];
     fetch(url)
         .then(async res => {
@@ -247,7 +246,7 @@ function getInfo() {
 }
 setInterval(() => {
     getInfo();
-}, 3000);
+}, 1000);
 
 function animate() {
     // moveArrowKey(piecesBlack[1]);
@@ -367,7 +366,7 @@ function patchData(piece, name) {
     url = `http://localhost:5000/post/${name}`;
     posX = (piece.position.x + 200) / 50
     posY = (piece.position.z + 200) / 50
-    dataJsonPos = { name: name, position: { posX: posX, posY: posY } }
+    dataJsonPos = { "name": name, "position": { "posX": posX, "posY": posY } }
     fetch(url, {
         method: 'PATCH',
         headers: {
@@ -383,4 +382,3 @@ function patchData(piece, name) {
             console.error('Error:', error);
         })
 }
-

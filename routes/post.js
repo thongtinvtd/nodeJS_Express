@@ -7,27 +7,28 @@ const clientMQTT = mqtt.connect('mqtt://localhost:1883')
 const { InfluxDB } = require('@influxdata/influxdb-client');
 const { resolve } = require('path');
 // You can generate a Token from the "Tokens Tab" in the UI
-const token = 'mY2F1NoeIxQRvQFdU1FUdJFvHjCNZ3aSrtmwsWE6upDP96V9ES2RrozyEidekDzKrdlkyPJrL_FFQTE_Srxs7g=='
+// const token = 'mY2F1NoeIxQRvQFdU1FUdJFvHjCNZ3aSrtmwsWE6upDP96V9ES2RrozyEidekDzKrdlkyPJrL_FFQTE_Srxs7g=='
+const token = '8g5wEdXcUfVA5xpfr8R43cYMIQkxA_iyJ4V2ha5L4Tz1uqBbNYIgBR2HzGL0dDKO2rvsDtqF1rpddUxklNvyaw=='
 const org = 'thongtinvtd'
 const bucket = 'thongtinvtd'
 const clientInflux = new InfluxDB({ url: 'http://localhost:8086', token: token })
-
+const topicMQTT = 'dev/test2'
 //GET
 let data1;
 router.get('/', async (req, res) => {
     console.log("get All")
-    const data = queryInflux().then(val => {
-        data1 = val;
-    });
-    console.log("call data from function query", data1);
-    res.json(data1);
+    // const data = queryInflux().then(val => {
+    //     data1 = val;
+    // });
+    // console.log("get data from function query", data1);
+    // res.json(data1);
 
-    // try {
-    //     const model = await Model.find();
-    //     res.json(model);
-    // } catch (err) {
-    //     res.json({ message: err });
-    // }
+    try {
+        const model = await Model.find();
+        res.json(model);
+    } catch (err) {
+        res.json({ message: err });
+    }
 })
 
 //POST
@@ -63,74 +64,13 @@ function clearArray() {
 clearArray();
 router.get('/:Id', (req, res) => {
     if (req.params.Id == "heatmap") {
-        console.log("this is route");
-        //     const data = queryInflux();
-        //     res.json(data);
-        const arrayTime = [];
-        const arrayPiece = [
-            'pieceBlack0',
-            'pieceBlack1',
-            'pieceBlack2',
-            'pieceBlack3',
-            'pieceBlack4',
-            'pieceBlack5',
-            'pieceBlack6',
-            'pieceBlack7',
-            'pieceBlack8',
-            'pieceBlack9',
-            'pieceBlack10',
-            'pieceBlack11',
-            'pieceWhite0',
-            'pieceWhite1',
-            'pieceWhite2',
-            'pieceWhite3',
-            'pieceWhite4',
-            'pieceWhite5',
-            'pieceWhite6',
-            'pieceWhite7',
-            'pieceWhite8',
-            'pieceWhite9',
-            'pieceWhite10',
-            'pieceWhite11',
-        ];
-        queryApi.queryRows(query, {
-            next(row, tableMeta) {
-                const o = tableMeta.toObject(row)
-                console.log(
-                    `${o.tag} ${o._field} ${o._value} ${o._time}`
-                )
-                for (let i = 0; i < arrayPiece.length; i++) {
-                    if (o.tag == arrayPiece[i]) {
-                        arrayTime.push(o._time)
-                        if (o._field == 'posX') {
-                            arrayPieceX[i].push(o._value)
-                        } else
-                            if (o._field == 'posY') {
-                                arrayPieceY[i].push(o._value)
-                            }
-                        pieceOj[i] = {
-                            name: arrayPiece[i],
-                            posX: arrayPieceX[i],
-                            posY: arrayPieceY[i]
-                        }
+        console.log("this is route /heatmap");
 
-                    }
-                }
-            },
-            error(error) {
-                console.error(error)
-                console.log('\nFinished ERROR')
-            },
-            complete() {
-                // console.log(pieceOj);
-                console.log('\nFinished SUCCESS')
-                res.json(pieceOj);
-                clearArray();
-
-            },
-        })
-
-
+        const data = queryInflux().then(val => {
+            data1 = val;
+        });
+        console.log("get data from function query", data1);
+        res.json(data1);
     }
     console.log(pieceOj);
 
@@ -144,15 +84,17 @@ router.get('/:Id', (req, res) => {
 //UPDATE 1
 router.patch('/:pieceName', async (req, res) => {
     console.log("post successfully", req.body)
-    publishMQTT(JSON.stringify(req.body));
-    // try {
-    //     const updatePiece = await Model.updateOne(
-    //         { piece: req.params.pieceName },
-    //         { $set: { position: req.body.position } });
-    //     res.json(updatePiece);
-    // } catch (err) {
-    //     res.json({ message: err });
-    // }
+    publishMQTT(topicMQTT,JSON.stringify(req.body));
+
+    try {
+        const updatePiece = await Model.updateOne(
+            { piece: req.params.pieceName },
+            { $set: { position: req.body.position } });
+        res.json(updatePiece);
+    } catch (err) {
+        res.json({ message: err });
+    }
+
     let _measurement = "ChessData";
     let _host = "host1";
     let tag = String(req.params.pieceName)
@@ -178,14 +120,6 @@ router.patch('/:pieceName', async (req, res) => {
 //     }
 // })
 
-clientMQTT.on("connect", function () {
-    console.log("connected MQTT broker " + clientMQTT.connected);
-})
-clientMQTT.on("error", function (error) {
-    console.log("Can't connect MQTT broker " + error);
-    process.exit(1)
-});
-
 function getDataFromMongo() {
     try {
         const model = Model.find().lean();
@@ -198,12 +132,31 @@ function getDataFromMongo() {
 
 
 }
-function publishMQTT(data) {
+
+clientMQTT.on("connect", function () {
+    console.log("connected MQTT broker " + clientMQTT.connected);
+    clientMQTT.subscribe(topicMQTT,{qos:0});
+})
+clientMQTT.on("error", function (error) {
+    console.log("Can't connect MQTT broker " + error);
+    process.exit(1)
+});
+
+function publishMQTT(topic,data) {
     console.log("send to topic dev/test2 ");
     if (clientMQTT.connected == true) {
-        clientMQTT.publish('dev/test2', data);
+        clientMQTT.publish(topic, data);
     }
 }
+
+clientMQTT.on('message', (topic, message,packet) => {
+    if(topic === topicMQTT) {
+        let messageMQTT = message.toString()
+        // console.log('message from MQTT: ',messageMQTT);
+        const mss = JSON.parse(messageMQTT)
+        console.log('JSON from MQTT: ',mss);
+    }
+  })
 
 function writeInflux(_mesurement, _field1, _field2, _host, value1, value2, tag) {
     const { Point } = require('@influxdata/influxdb-client')
@@ -222,7 +175,7 @@ function writeInflux(_mesurement, _field1, _field2, _host, value1, value2, tag) 
         })
         .catch(e => {
             console.error(e)
-            console.log('\\nFinished ERROR')
+            console.log('\\nFinished write ERROR INFLUXDB')
         })
 
 }
@@ -242,8 +195,6 @@ function queryInflux() {
     return new Promise((resolve, reject) => {
         let returnValue;
         clearArray();
-        //     const data = queryInflux();
-        //     res.json(data);
         const arrayTime = [];
         const arrayPiece = [
             'pieceBlack0',
@@ -295,13 +246,13 @@ function queryInflux() {
             },
             error(error) {
                 console.error(error)
-                console.log('\nFinished ERROR')
+                console.log('\nFinished ERROR Influx')
                 returnValue = false;
                 reject(returnValue);
             },
             complete() {
                 console.log("call at complete :", pieceOj);
-                console.log('\nFinished SUCCESS')
+                console.log('\nFinished SUCCESS Influx')
                 // res.json(pieceOj);
                 returnValue = pieceOj;
                 resolve(returnValue)

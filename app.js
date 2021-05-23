@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(cors()); //to connect to WAN
 const postRoute = require('./routes/post')
 app.use('/post', postRoute);
-app.use(express.static(__dirname + '/web'))
+app.use(express.static('web'))
 app.use('/chessBlack', (req, res) => {
     console.log("chess Black was chosen")
     res.sendFile(__dirname + '/web/chessBlack.html');
