@@ -13,16 +13,16 @@ services:
       - "8090:8090"
 
   # Use the influx cli to set up an influxdb instance. 
-#   influxdb_cli:
-#     links:
-#       - influxdb
-#     image: quay.io/influxdb/influxdb@sha256:b19759cfbf552f2cca2c31c0c22bbba6f7802e55c1f63ef0a26fcb3a6acd6e5f
-# # Use these same configurations parameters in your telegraf configuration, mytelegraf.conf.
-#     entrypoint: influxdb influx setup --username thongtinvtd --password trung789 --org thongtinvtd --bucket thongtinvtd -r 0 -f
-#       # Wait for the influxd service in the influxdb container has fully bootstrapped before trying to setup an influxdb instance with the influxdb_cli service. 
-#     restart: on-failure:10
-#     depends_on:
-#       - influxdb
+   influxdb_cli:
+     links:
+       - influxdb
+     image: quay.io/influxdb/influxdb@sha256:b19759cfbf552f2cca2c31c0c22bbba6f7802e55c1f63ef0a26fcb3a6acd6e5f
+ # Use these same configurations parameters in your telegraf configuration, mytelegraf.conf.
+     entrypoint: influxdb influx setup --username thongtinvtd --password trung789 --org thongtinvtd --bucket thongtinvtd -r 0 -f
+       # Wait for the influxd service in the influxdb container has fully bootstrapped before trying to setup an influxdb instance with the influxdb_cli service. 
+     restart: on-failure:10
+     depends_on:
+       - influxdb
 
   mosquitto:
     image: eclipse-mosquitto:1.6.12
